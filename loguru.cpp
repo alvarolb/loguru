@@ -27,7 +27,6 @@
 #undef max
 
 #include <algorithm>
-#include <atomic>
 #include <chrono>
 #include <cstdarg>
 #include <cstdio>
@@ -184,7 +183,7 @@ namespace loguru
 	static name_to_verbosity_t   s_name_to_verbosity_callback = nullptr;
 	static StringPairList        s_user_stack_cleanups;
 	static bool                  s_strip_file_path = true;
-	static std::atomic<unsigned> s_stderr_indentation { 0 };
+	static thread_local unsigned s_stderr_indentation { 0 };
 
 	// For periodic flushing:
 	static std::thread* s_flush_thread   = nullptr;
